@@ -28,8 +28,9 @@ pipeline {
         }
 
         stage('Health Check') {
-            steps {
-                sh 'curl --retry 5 --retry-delay 1 http://localhost:8000/health'
+    steps {
+        sh 'curl --fail --retry 10 --retry-delay 2 --retry-all-errors http://localhost:8000/health'
+
             }
         }
     }
